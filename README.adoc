@@ -27,6 +27,15 @@ You can take a look at the link:sonar-project.properties[sonar-project.propertie
 - https://docs.sonarqube.org/latest/analysis/languages/cfamily/[Documentation of the C/C++/Objective-C plugin and its Build Wrapper]
 - https://sonarcloud.io/documentation/getting-started/github/[Documentation of using SonarCloud with GitHub]
 
+== Warnings
+
+The following warning may appear during invocation of `/build-wrapper-macosx-x86`. To best of our knowledge does not affect the result of the analysis:
+----
+dyld: warning: could not load inserted library '/Users/runner/.sonar/build-wrapper-macosx-x86/libinterceptor.dylib' into hardened process because no suitable image found.  Did find:
+	/Users/runner/.sonar/build-wrapper-macosx-x86/libinterceptor.dylib: code signature in (/Users/runner/.sonar/build-wrapper-macosx-x86/libinterceptor.dylib) not valid for use in process using Library Validation: mapped file has no cdhash, completely unsigned? Code has to be at least ad-hoc signed.
+----
+For details please reffer to following https://jira.sonarsource.com/browse/CPP-1640[ticket] and https://community.sonarsource.com/t/dyld-warning-could-not-load-inserted-library-applications-sonar-scanner-bin-libinterceptor-dylib-into-hardened-process-because-no-suitable-image-found/1806[community thread].
+
 = MacOS\XCodeBuild
 
 A build of the https://github.com/sc-sq-c-family-examples/code[code repository] on a MacOS using XCode build system.
