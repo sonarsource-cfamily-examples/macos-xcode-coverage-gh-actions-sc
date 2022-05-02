@@ -45,11 +45,22 @@ jobs:
           echo "$HOME/.sonar/build-wrapper-macosx-x86" >> $GITHUB_PATH
       - name: Run build-wrapper
         run: |
-          build-wrapper-macosx-x86 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} xcodebuild
+          build-wrapper-macosx-x86 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} xcodebuild -project macos-xcode.xcodeproj -scheme macos-xcode
+      - name: Run tests to generate coverage statistics
+        run: |
+          xcodebuild test -project macos-xcode.xcodeproj -scheme test1 -enableCodeCoverage YES -derivedDataPath build
+          xcodebuild test -project macos-xcode.xcodeproj -scheme test2 -enableCodeCoverage YES -derivedDataPath build
+      - name: Collect coverage into one XML report
+        run: |
+          xcrun xcresulttool merge build/Logs/Test/Test-test1-*.xcresult build/Logs/Test/Test-test2-*.xcresult --output-path merged.xcresult
+          bash xccov-to-generic.sh build/Logs/Test/*.xcresult/ > generic-coverage.xml
       - name: Run sonar-scanner
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONARCLOUD_TOKEN }}
         run: |
-          sonar-scanner --define sonar.host.url="${{ env.SONAR_SERVER_URL }}" --define sonar.cfamily.build-wrapper-output="${{ env.BUILD_WRAPPER_OUT_DIR }}"
-
+          sonar-scanner \
+            --define sonar.host.url="${{ env.SONAR_SERVER_URL }}" \
+            --define sonar.cfamily.build-wrapper-output="${{ env.BUILD_WRAPPER_OUT_DIR }}" \
+            --define sonar.coverageReportPaths=generic-coverage.xml
+            
