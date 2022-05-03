@@ -52,7 +52,6 @@ jobs:
           xcodebuild test -project macos-xcode.xcodeproj -scheme test2 -enableCodeCoverage YES -derivedDataPath build
       - name: Collect coverage into one XML report
         run: |
-          xcrun xcresulttool merge build/Logs/Test/Test-test1-*.xcresult build/Logs/Test/Test-test2-*.xcresult --output-path merged.xcresult
           bash xccov-to-generic.sh build/Logs/Test/*.xcresult/ > generic-coverage.xml
       - name: Run sonar-scanner
         env:

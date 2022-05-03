@@ -21,8 +21,7 @@ It is very easy to analyze a C, C++ and Objective-C project on SonarCloud with c
 .. Download the https://docs.sonarcloud.io/advanced-setup/languages/c-c-objective-c/#analysis-steps-using-build-wrapper[Build Wrapper]
 .. Wrap your compilation with the Build Wrapper
 .. Run the test binaries with `-enableCodeCoverage YES` to count covered lines
-.. Merge the multiple `\*.xcresult` into a single `*.xcresult` file with the help of `xcresulttool merge`
-.. Run link:xccov-to-generic.sh[xccov-to-generic.sh] to produce a https://docs.sonarcloud.io/enriching/test-coverage/generic-test-data/[Generic Test Data] format that is compatible with SonarCloud
+.. Run link:xccov-to-generic.sh[xccov-to-generic.sh] on the `*.xcresult` files to produce a https://docs.sonarcloud.io/enriching/test-coverage/generic-test-data/[Generic Test Data] format that is compatible with SonarCloud
 .. Run `sonar-scanner` as the final step
 * Point the sonar.coverageReportPaths property to the generated coverage-report file
 . Make sure that you have your token stored as a secret in your repository (`SONAR_TOKEN`). You can request new tokens using https://sonarcloud.io/account/security/[Account/Security page].
