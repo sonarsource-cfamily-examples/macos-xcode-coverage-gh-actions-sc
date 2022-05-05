@@ -1,4 +1,4 @@
-= C++ example project scanned on SonarCloud using GitHub Actions
+= C++ example project for code coverage with Xcode
 // URIs:
 :uri-qg-status: https://sonarcloud.io/dashboard?id=sonarsource-cfamily-examples_macos-xcode-coverage-gh-actions-sc
 :img-qg-status: https://sonarcloud.io/api/project_badges/measure?project=sonarsource-cfamily-examples_macos-xcode-coverage-gh-actions-sc&metric=alert_status
@@ -8,23 +8,19 @@
 image:{img-build-status}[Build Status, link={uri-build-status}]
 image:{img-qg-status}[Quality Gate Status,link={uri-qg-status}]
 
-*This project is analysed on https://sonarcloud.io/dashboard?id=sonarsource-cfamily-examples_macos-xcode-coverage-gh-actions-sc[SonarCloud]!*
+*The test coverage shown here works on Both SonarQube and SonarCloud. This project is analyzed on SonarCloud https://sonarcloud.io/dashboard?id=sonarsource-cfamily-examples_macos-xcode-coverage-gh-actions-sc[SonarCloud]!*
 
 :note-caption: :information_source:
-NOTE: This simple example ignores https://docs.sonarcloud.io/advanced-setup/languages/c-c-objective-c/#analysis-cache[analysis cache] and https://docs.sonarcloud.io/advanced-setup/languages/c-c-objective-c/#parallel-code-scan[multithreaded execution] both of which can boost analysis significantly.
+NOTE: This simple example aims at demonstrating code coverage in action. It explains how to add coverage on a project for which the analysis is already configured. Analysis configuration examples are available https://github.com/sonarsource-cfamily-examples?q=xcode[here]. +
+Adding code coverage is done the same way regardless of using the Build Wrapper or a Compilation Database to cconfigure the analysis.
 
-It is very easy to analyze a C, C++ and Objective-C project on SonarCloud with code coverage and https://docs.sonarcloud.io/getting-started/github/[GitHub Actions]:
 
-. Create a `sonar-project.properties` file to store your configuration
-. In your `.github/workflows/build.yml` file:
-.. Download the https://docs.sonarcloud.io/advanced-setup/ci-based-analysis/sonarscanner-cli/[Sonar Scanner]
-.. Download the https://docs.sonarcloud.io/advanced-setup/languages/c-c-objective-c/#analysis-steps-using-build-wrapper[Build Wrapper]
-.. Wrap your compilation with the Build Wrapper
-.. Run the test binaries with `-enableCodeCoverage YES` to count covered lines
-.. Run link:xccov-to-generic.sh[xccov-to-generic.sh] on the `*.xcresult` files to produce a https://docs.sonarcloud.io/enriching/test-coverage/generic-test-data/[Generic Test Data] format that is compatible with SonarCloud
-.. Run `sonar-scanner` as the final step
+After your build and before your running `sonar-scanner`, proceed with the following steps:
+
+. Run the test binaries with `-enableCodeCoverage YES` to count covered lines
+. Run link:xccov-to-generic.sh[xccov-to-generic.sh] on the `*.xcresult` files to produce a https://docs.sonarcloud.io/enriching/test-coverage/generic-test-data/[Generic Test Data] format that is compatible with SonarCloud
+. Run `sonar-scanner` as the final step
 * Point the sonar.coverageReportPaths property to the generated coverage-report file
-. Make sure that you have your token stored as a secret in your repository (`SONAR_TOKEN`). You can request new tokens using https://sonarcloud.io/account/security/[Account/Security page].
 
 You can take a look at the link:sonar-project.properties[sonar-project.properties] and link:.github/workflows/build.yml[build.yml] to see it in practice.
 
@@ -37,15 +33,6 @@ You can take a look at the link:sonar-project.properties[sonar-project.propertie
 - https://docs.sonarcloud.io/advanced-setup/languages/c-c-objective-c/#parallel-code-scan[Configuring multithreaded execution]
 - https://docs.sonarcloud.io/advanced-setup/languages/c-c-objective-c/#analysis-steps-using-compilation-database[Using compilation database (compile_commands.json)]
 - https://docs.sonarcloud.io/enriching/test-coverage/test-coverage-parameters/[Test coverage parameters]
-
-== Warnings
-
-The following warning may appear during invocation of `/build-wrapper-macosx-x86`. To best of our knowledge does not affect the result of the analysis:
-----
-dyld: warning: could not load inserted library '/Users/runner/.sonar/build-wrapper-macosx-x86/libinterceptor.dylib' into hardened process because no suitable image found.  Did find:
-	/Users/runner/.sonar/build-wrapper-macosx-x86/libinterceptor.dylib: code signature in (/Users/runner/.sonar/build-wrapper-macosx-x86/libinterceptor.dylib) not valid for use in process using Library Validation: mapped file has no cdhash, completely unsigned? Code has to be at least ad-hoc signed.
-----
-For details please refer to following https://jira.sonarsource.com/browse/CPP-1640[ticket] and https://community.sonarsource.com/t/dyld-warning-could-not-load-inserted-library-applications-sonar-scanner-bin-libinterceptor-dylib-into-hardened-process-because-no-suitable-image-found/1806[community thread].
 
 = MacOS\XCodeBuild
 
