@@ -20,7 +20,7 @@ After your build and before running `sonar-scanner`, proceed with the following 
 . Run the test binaries with `-enableCodeCoverage YES` to count covered lines
 . Run link:xccov-to-generic.sh[xccov-to-generic.sh] on the `*.xcresult` files to produce a https://docs.sonarcloud.io/enriching/test-coverage/generic-test-data/[Generic Test Data] format that is compatible with SonarCloud and SonarQube
 . Run `sonar-scanner` as the final step
-* Point the sonar.coverageReportPaths property to the generated coverage-report file
+* Point the `sonar.coverageReportPaths` property to the generated coverage-report file
 
 You can take a look at the link:sonar-project.properties[sonar-project.properties] and link:.github/workflows/build.yml[build.yml] to see it in practice.
 
