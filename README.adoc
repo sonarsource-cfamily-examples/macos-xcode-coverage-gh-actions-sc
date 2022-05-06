@@ -12,7 +12,7 @@ image:{img-qg-status}[Quality Gate Status,link={uri-qg-status}]
 
 :note-caption: :information_source:
 NOTE: This simple example aims at demonstrating code coverage in action. It explains how to add coverage on a project for which the analysis is already configured. Analysis configuration examples are available https://github.com/sonarsource-cfamily-examples?q=xcode[here]. +
-Adding code coverage is done the same way regardless of using the Build Wrapper or a Compilation Database to cconfigure the analysis.
+Adding code coverage is done the same way regardless of whether you use the Build Wrapper or a Compilation Database to configure the analysis.
 
 
 After your build and before your running `sonar-scanner`, proceed with the following steps:
