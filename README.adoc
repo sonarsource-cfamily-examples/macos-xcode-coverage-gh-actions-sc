@@ -1,4 +1,4 @@
-= C++ example project for code coverage with Xcode
+= C++ example project for generating test coverage with Xcode
 // URIs:
 :uri-qg-status: https://sonarcloud.io/dashboard?id=sonarsource-cfamily-examples_macos-xcode-coverage-gh-actions-sc
 :img-qg-status: https://sonarcloud.io/api/project_badges/measure?project=sonarsource-cfamily-examples_macos-xcode-coverage-gh-actions-sc&metric=alert_status
