@@ -15,7 +15,7 @@ NOTE: This simple example aims at demonstrating code coverage in action. It expl
 Adding code coverage is done the same way regardless of whether you use the Build Wrapper or a Compilation Database to configure the analysis.
 
 
-After your build and before your running `sonar-scanner`, proceed with the following steps:
+After your build and before running `sonar-scanner`, proceed with the following steps:
 
 . Run the test binaries with `-enableCodeCoverage YES` to count covered lines
 . Run link:xccov-to-generic.sh[xccov-to-generic.sh] on the `*.xcresult` files to produce a https://docs.sonarcloud.io/enriching/test-coverage/generic-test-data/[Generic Test Data] format that is compatible with SonarCloud
