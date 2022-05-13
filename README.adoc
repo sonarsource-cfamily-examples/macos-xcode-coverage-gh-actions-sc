@@ -11,7 +11,7 @@ image:{img-qg-status}[Quality Gate Status,link={uri-qg-status}]
 *The test coverage shown here works on both SonarQube and SonarCloud. This project is analyzed on https://sonarcloud.io/dashboard?id=sonarsource-cfamily-examples_macos-xcode-coverage-gh-actions-sc[SonarCloud]!*
 
 :note-caption: :information_source:
-NOTE: This simple example aims at demonstrating code coverage in action. It explains how to add coverage on a project for which the analysis is already configured. Analysis configuration examples are available https://github.com/sonarsource-cfamily-examples?q=xcode[here]. +
+NOTE: This simple example aims at demonstrating code coverage in action. It explains how to add coverage on a project for which the analysis is already configured. Analysis configuration examples are available https://github.com/sonarsource-cfamily-examples?q=topic:xcode[here]. +
 Adding code coverage is done the same way regardless of whether you use the Build Wrapper or a Compilation Database to configure the analysis.
 
 
@@ -19,8 +19,8 @@ After your build and before running `sonar-scanner`, proceed with the following 
 
 . Run the test binaries with `-enableCodeCoverage YES` to count covered lines
 . Run link:xccov-to-generic.sh[xccov-to-generic.sh] on the `*.xcresult` files to produce a https://docs.sonarcloud.io/enriching/test-coverage/generic-test-data/[Generic Test Data] format that is compatible with SonarCloud and SonarQube
+. Point the `sonar.coverageReportPaths` property to the generated coverage-report file
 . Run `sonar-scanner` as the final step
-* Point the `sonar.coverageReportPaths` property to the generated coverage-report file
 
 You can take a look at the link:sonar-project.properties[sonar-project.properties] and link:.github/workflows/build.yml[build.yml] to see it in practice.
 
@@ -34,14 +34,6 @@ You can take a look at the link:sonar-project.properties[sonar-project.propertie
 - https://docs.sonarcloud.io/advanced-setup/languages/c-c-objective-c/#analysis-steps-using-compilation-database[Using compilation database (compile_commands.json)]
 - https://docs.sonarcloud.io/enriching/test-coverage/test-coverage-parameters/[Test coverage parameters]
 
-= MacOS\XCodeBuild
-
-A build of the https://github.com/sonarsource-cfamily-examples/code[code repository] on a MacOS using XCode build system.
-
-To build the code run from the repository root directory:
-----
-xcodebuild
-----
 
 = Code Description
 
