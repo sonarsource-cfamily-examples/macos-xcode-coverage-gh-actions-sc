@@ -17,6 +17,10 @@ jobs:
           fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
       - name: Install Build Wrapper
         uses: SonarSource/sonarqube-scan-action/install-build-wrapper@v4
+      - name: Use Xcode 15.0
+        run: |
+          # The xccov scripts below currently only work with Xcode 15.0
+          sudo xcode-select -s "/Applications/Xcode_15.app"
       - name: Run Build Wrapper
         run: |
           build-wrapper-macosx-x86 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} xcodebuild -project macos-xcode.xcodeproj -scheme macos-xcode
