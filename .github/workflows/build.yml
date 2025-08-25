@@ -8,6 +8,7 @@ on:
 jobs:
   build:
     name: Build
+    # CPP-6873: This example is currently not compatible with macos-15
     runs-on: macos-14
     env:
       BUILD_WRAPPER_OUT_DIR: build_wrapper_output_directory # Directory where build-wrapper output will be placed
